@@ -1,0 +1,12 @@
+html {
+    background-color: black;
+    color:white
+}
+
+a:visited {
+    color:lightpink
+}
+
+a:not(:visited) {
+    color:pink
+}
