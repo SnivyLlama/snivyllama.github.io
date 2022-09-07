@@ -1,4 +1,4 @@
-fetch("https://api.github.com/gists/e57ffb6b7389047c6d609dcad4ed5a66")
+fetch("https://api.github.com/gists/e57ffb6b7389047c6d609dcad4ed5a66", {cache: "no-store"})
 .then(resp => resp.json())
 .then(data => {
     let rooms = JSON.parse(data.files["mafia.json"].content).rooms
