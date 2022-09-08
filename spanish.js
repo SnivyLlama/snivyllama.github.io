@@ -20,7 +20,7 @@ function update() {
     for (const [id, data] of Object.entries(temas)) {
         let temaDiv = document.getElementById(id);
         temaDiv.innerHTML = "";
-        if (field.value.length < 2) return;
+        if (field.value.length < 2) continue;
         for (const [sp, en] of Object.entries(data)) {
             if (canonicalise(sp).includes(canonicalise(field.value)) || en.toLowerCase().includes(canonicalise(field.value))) {
                 if (!temaDiv.innerHTML) {
