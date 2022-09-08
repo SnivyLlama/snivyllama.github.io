@@ -10,3 +10,23 @@ a:visited {
 a:not(:visited) {
     color:pink
 }
+
+span.def {
+    display: inline-block;
+    margin-bottom: 2px;
+}
+
+span.sp {
+    background-color: gray;
+    padding-left: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+span.en {
+    background-color: lightgray;
+    color: black;
+    padding-right: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+}
