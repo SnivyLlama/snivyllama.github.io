@@ -41,7 +41,7 @@ function update() {
             }
         }
     }
-    if (!anything && field.value.length >= 2) empathy.innerHTML = `<h2>Whoops! No results found!</h2><b><a href="https://www.spanishdict.com/translate/${field.value}" target="_blank">Try using the spanishdict translation!</a></b>`;
+    if (!anything && field.value.length >= 2) empathy.innerHTML = `<h2>Whoops! No results found!</h2><b><a href="https://www.spanishdict.com/translate/${field.value}" target="_blank">Try using the spanishdict translation!</a><br><a href="https://translate.google.com/?sl=en&tl=es&op=translate&text=${field.value}" target="_blank">Try using Google Translate! (English -> Spanish)</a><br><a href="https://translate.google.com/?sl=es&tl=en&op=translate&text=${field.value}" target="_blank">Try using Google Translate! (Spanish -> English)</a></b>`;
     else empathy.innerHTML = "";
 }
 
