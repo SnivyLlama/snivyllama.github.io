@@ -16,8 +16,9 @@ function update() {
         bar.setAttribute("width", "99.8%");
     } else {
         let percent = (acc(now) - 800) / 4;
-        progress.innerHTML = `School is ${percent.toFixed(4)}% done!`;
-        bar.setAttribute("width", (percent * 0.998).toString() + "%");
+        let mins = 400 - (minutes(now) - 800);
+        progress.innerHTML = `School is ${percent.toFixed(4)}% done! Only ${Math.floor(mins/60) > 0 ? Math.floor(mins/60) + (Math.floor(mins/60) == 1 ? " hour" : " hours") : ""}${Math.floor(mins/60) > 0 && mins % 60 > 0 ? " and " : ""}${mins % 60 > 0 ? mins % 60 + (mins % 60 == 1 ? " minute left" : " minutes left") : ""}!`;
+        bar.setAttribute("width", (percent * 0.998) + "%");
     }
 }
 
