@@ -19,12 +19,14 @@ const sp3t3info = {"estar resfriado, -a, -os, -as": "to have a cold", "estornuda
 const sp3t4info = {"asistir a": "to attend", "solicitar": "to apply for", "presentarse": "to introduce oneself", "ayudar a los demás": "to help others", "hacer trabajo voluntario": "to do volunteer work", "conseguir": "to get", "colaborar": "to collaborate", "ganar dinero": "to earn money", "planear": "to plan", "encargarse de": "to handle; to take charge", "hacerse": "to become", "elegir": "to choose", "realizar": "to fulfill; to achieve", "a tiempo completo/parcial": "full / part time", "el seguro médico": "the health insurance", "los beneficios": "the benefits", "el sueldo": "the salary", "el empleado; la empleada": "the employee", "el gerente": "the manager", "el puesto": "the position", "la solicitud de empleo": "the job application", "el currículum vitae": "the resume", "la carta de presentación / la carta de solicitar trabajo": "the cover letter", "la entrevista": "the interview", "la referencia": "the reference", "la habilidad": "the ability; the skill", "los requisitos": "the requirements", "la cualidad": "the quality (characteristic)", "la fortaleza": "the strength", "la debilidad": "the weakness", "agradable, -s": "nice", "dedicado, -a, -os, -as": "dedicated", "puntual, -es": "punctual", "capaz, capaces": "capable", "cuidadoso, -a, -os, -as": "careful", "emprendedor, -a, -es, -as": "entrepreneurial", "maduro, -a, -os, -as": "mature", "El/la agente de viajes": "the travel agent", "El/la atleta": "the athlete", "El/la bombero/a": "the firefighter", "El/la cajero/a": "the cashier", "El/la camarero/a": "the waiter/waitress", "La computación": "the computer science", "El/la dentista": "the dentist", "El/la científico/a": "the scientist", "El/la vendedor/a": "the salesperson", "El/la empleado/a": "the employee", "El/la entrenador/a": "the coach/trainer", "El/la locutor/a": "the announcer", "El/la fotógrafo/a": "the photographer", "El/la consejero/a": "the counselor", "El/la niñero/a": "the nanny/babysitter", "El/la repartidor/a": "the delivery person", "El/la recepcionista": "the receptionist", "El/la salvavidas": "the lifeguard", "El/la abogado/a": "the lawyer", "El/la arquitecto/a": "the architect", "El/la banquero/a": "the banker", "El/la cocinero/a": "the cook/chef", "El/la contador/a": "the accountant", "El/la diseñador/a": "the designer", "El hombre de negocios": "the business man", "La mujer de negocios": "the business woman", "El/la ingeniero/a": "the engineer", "El/la jefe/a": "the boss", "El/la juez": "the judge", "El/la peluquero/a": "the hair stylist", "El/la programador/a": "the programmer", "El/la traductor/a": "the translator"};
 const temas = {"sp1-tema-0": sp1t0info, "sp1-tema-1": sp1t1info, "sp1-tema-2": sp1t2info, "sp1-tema-3a": sp1t3ainfo, "sp1-tema-3b": sp1t3binfo, "sp1-tema-4": sp1t4info, "sp1-tema-5": sp1t5info, "sp2-tema-1": sp2t1info, "sp2-tema-2": sp2t2info, "sp2-tema-3": sp2t3info, "sp2-tema-4": sp2t4info, "sp2-tema-5": sp2t5info, "sp2-tema-6": sp2t6info, "sp2-tema-7": sp2t7info, "sp3-tema-0": sp3t0info, "sp3-tema-1": sp3t1info, "sp3-tema-2": sp3t2info, "sp3-tema-3": sp3t3info, "sp3-tema-4": sp3t4info};
 var field = document.getElementById("translation");
+var empathy = document.getElementById("empathy");
 
 function canonicalise(phrase) {
     return phrase.toLowerCase().replace("á", "a").replace("é", "e").replace("í", "i").replace("ñ", "n").replace("ó", "o").replace("ú", "u").replace("ü", "u");
 }
 
 function update() {
+    let anything = false;
     for (const [id, data] of Object.entries(temas)) {
         let temaDiv = document.getElementById(id);
         temaDiv.innerHTML = "";
@@ -35,9 +37,12 @@ function update() {
                     temaDiv.innerHTML += `<h2>Spanish ${id[2]} Tema ${id.match(/[^-]+$/)[0]}</h2>`;
                 }
                 temaDiv.innerHTML += `<span class="def"><span class="en">${en}</span><span class="sp">${sp}</span></span><br>`;
+                anything = true;
             }
         }
     }
+    if (!anything && field.value.length >= 2) empathy.innerHTML = `<h2>Whoops! No results found!</h2><b><a href="https://www.spanishdict.com/translate/${field.value}" target="_blank">Try using the spanishdict translation!</a></b>`;
+    else empathy.innerHTML = "";
 }
 
 field.onchange = update;
