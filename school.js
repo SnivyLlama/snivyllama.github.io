@@ -1,5 +1,6 @@
 var progress = document.getElementById("progress");
 var specific = document.getElementById("specific");
+var sdiv = document.getElementById("specific-div");
 var obar = document.getElementById("overall-bar");
 var sbar = document.getElementById("specific-bar");
 
@@ -17,8 +18,9 @@ function update() {
         progress.innerHTML = "School is not in session at this time!";
         specific.innerHTML  = "School is not in session at this time!";
         obar.setAttribute("width", "99.8%");
-        sbar.setAttribute("width", "99.8%");
+        sdiv.style.display = "none";
     } else {
+        sdiv.style.display = "block";
         let percent = (acc(now) - 800) / 4;
         let amins = minutes(now) - 800
         let mins = 400 - amins;
