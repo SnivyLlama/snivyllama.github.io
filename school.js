@@ -16,7 +16,6 @@ function update() {
     let now = new Date();
     if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) {
         progress.innerHTML = "School is not in session at this time!";
-        specific.innerHTML  = "School is not in session at this time!";
         obar.setAttribute("width", "99.8%");
         sdiv.style.display = "none";
     } else {
