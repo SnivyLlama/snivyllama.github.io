@@ -1,8 +1,11 @@
 var progress = document.getElementById("progress");
 var specific = document.getElementById("specific");
+var lunch = document.getElementById("lunch");
 var sdiv = document.getElementById("specific-div");
+var ldiv = document.getElementById("lunch-div")
 var obar = document.getElementById("overall-bar");
 var sbar = document.getElementById("specific-bar");
+var lbar = document.getElementById("lunch-bar");
 
 function minutes(date) {
     return date.getUTCHours() * 60 + date.getUTCMinutes();
@@ -18,6 +21,7 @@ function update() {
         progress.innerHTML = "School is not in session at this time!";
         obar.setAttribute("width", "99.8%");
         sdiv.style.display = "none";
+        ldiv.style.display = "none";
     } else {
         sdiv.style.display = "block";
         let percent = (acc(now) - 800) / 4;
@@ -60,6 +64,33 @@ function update() {
             mins = 400 - amins;
             specific.innerHTML = `Block 4 is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
             sbar.setAttribute("width", (percent * 0.998) + "%");
+        }
+        if (amins >= 180 && amins < 212) {
+            ldiv.style.display = "block";
+            percent = (acc(now) - 980) / .32;
+            mins = 212 - amins;
+            lunch.innerHTML = `Lunch A is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
+            lbar.setAttribute("width", (percent * 0.998) + "%");
+        } else if (amins >= 213 && amins < 239) {
+            ldiv.style.display = "block";
+            percent = (acc(now) - 1013) / .26;
+            mins = 239 - amins;
+            lunch.innerHTML = `Lunch B is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
+            lbar.setAttribute("width", (percent * 0.998) + "%");
+        } else if (amins >= 250 && amins < 277) {
+            ldiv.style.display = "block";
+            percent = (acc(now) - 1050) / .27;
+            mins = 277 - amins;
+            lunch.innerHTML = `Lunch C is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
+            lbar.setAttribute("width", (percent * 0.998) + "%");
+        } else if (amins >= 277 && amins < 306) {
+            ldiv.style.display = "block";
+            percent = (acc(now) - 1077) / .29;
+            mins = 306 - amins;
+            lunch.innerHTML = `Lunch D is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
+            lbar.setAttribute("width", (percent * 0.998) + "%");
+        } else {
+            ldiv.style.display = "none";
         }
     }
 }
