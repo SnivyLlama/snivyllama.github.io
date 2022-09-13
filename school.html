@@ -10,13 +10,23 @@
         <div class="center">
             <b id="progress"></b>
         </div>
-        <br>
-        <svg id="school">
+        <svg class="progress">
             <g color="lightgray">
                 <rect height="100%" width="100%" fill="currentcolor"></rect>
             </g>
             <g color="lightgreen">
-                <rect x="0.1%" y="2%" height="96%" width="99.8%" fill="currentcolor" id="bar"></rect>
+                <rect x="0.1%" y="2%" height="96%" width="99.8%" fill="currentcolor" id="overall-bar"></rect>
+            </g>
+        </svg>
+        <div class="center">
+            <b id="specific"></b>
+        </div>
+        <svg class="progress">
+            <g color="lightgray">
+                <rect height="100%" width="100%" fill="currentcolor"></rect>
+            </g>
+            <g color="lightgreen">
+                <rect x="0.1%" y="2%" height="96%" width="99.8%" fill="currentcolor" id="specific-bar"></rect>
             </g>
         </svg>
         <script src="school.js"></script>
