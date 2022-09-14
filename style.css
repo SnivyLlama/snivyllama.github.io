@@ -39,3 +39,21 @@ span.en {
 .center {
     text-align: center;
 }
+
+.fit {
+    text-align: center;
+    width: fit-content;
+}
+
+.conj-head {
+    background-color: lightgray;
+    color: black;
+    border-radius: 2px;
+    margin-bottom: 1px;
+}
+
+.conj-td {
+    background-color: gray;
+    border-radius: 2px;
+    text-align: center;
+}
