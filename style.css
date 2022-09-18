@@ -32,6 +32,7 @@ span.en {
 }
 
 span.e {
+    display: inline-block;
     background-color: darkred;
     border-radius: 2px;
 }

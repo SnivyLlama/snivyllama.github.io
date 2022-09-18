@@ -38,7 +38,7 @@ function update() {
                 if (!temaDiv.innerHTML) {
                     temaDiv.innerHTML += `<h2>Spanish ${id[2]} Tema ${id.match(/[^-]+$/)[0]}</h2>`;
                 }
-                temaDiv.innerHTML += `<span class="def"><span class="en">${en}</span><span class="sp">${sp}</span></span> ${ind >= exts[id] ? "<span class=\"e\">Extension</span>" : ""}<br>`;
+                temaDiv.innerHTML += `<span class="def"><span class="en">${en}</span><span class="sp">${sp}</span> ${ind >= exts[id] ? "<span class=\"e\">Extension</span>" : ""}</span><br>`;
                 anything = true;
             }
             ind++;
