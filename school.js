@@ -21,7 +21,7 @@ function acc(date) {
 
 function update() {
     let tpercent = (Date.now() / 1000 - start) / (end - start) * 100;
-    year.innerHTML = `The School Year is ${tpercent.toFixed(6)}% done!`;
+    year.innerHTML = `The School Year is ${tpercent.toFixed(7)}% done!`;
     ybar.setAttribute("width", (tpercent * 0.998) + "%");
     let now = new Date();
     if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) {
