@@ -24,9 +24,26 @@ function update() {
     year.innerHTML = `The School Year is ${tpercent.toFixed(7)}% done!`;
     ybar.setAttribute("width", (tpercent * 0.998) + "%");
     let now = new Date();
-    if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) {
-        progress.innerHTML = "School is not in session at this time!";
-        obar.setAttribute("width", "99.8%");
+    if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) { 
+        if (now.getUTCDay() % 6 != 0 && minutes(now) < 800) {
+            if (minutes(now) >= 790 && minutes(now) < 795) {
+                let percent = (acc(now) - 790) / .05;
+                mins = 5 - (minutes(now) - 790);
+                progress.innerHTML = `Warning Bell #2 is ${percent.toFixed(3)}% of the way to being rung! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
+                obar.setAttribute("width", (percent * 0.998) + "%");
+            } else if (minutes(now) >= 795) {
+                let percent = (acc(now) - 795) / .05;
+                mins = 5 - (minutes(now) - 795);
+                progress.innerHTML = `School is ${percent.toFixed(3)}% of the way to starting! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
+                obar.setAttribute("width", (percent * 0.998) + "%");
+            } else {
+                progress.innerHTML = "School is not in session at this time!";
+                obar.setAttribute("width", "99.8%")
+            }
+        } else {
+            progress.innerHTML = "School is not in session at this time!";
+            obar.setAttribute("width", "99.8%")
+        }
         sdiv.style.display = "none";
         ldiv.style.display = "none";
     } else {
