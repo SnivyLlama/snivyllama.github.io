@@ -1,5 +1,6 @@
 var progress = document.getElementById("progress");
 var specific = document.getElementById("specific");
+var graduation = document.getElementById("graduation");
 var year = document.getElementById("year-text");
 var lunch = document.getElementById("lunch");
 var sdiv = document.getElementById("specific-div");
@@ -8,8 +9,11 @@ var obar = document.getElementById("overall-bar");
 var sbar = document.getElementById("specific-bar");
 var lbar = document.getElementById("lunch-bar");
 var ybar = document.getElementById("year-bar");
+var gbar = document.getElementById("grad-bar");
 const start = 1662470400;
 const end = 1686254400;
+const gstart = 1662470400;
+const gend = 1780948800;
 
 function minutes(date) {
     return date.getUTCHours() * 60 + date.getUTCMinutes();
@@ -23,6 +27,9 @@ function update() {
     let tpercent = (Date.now() / 1000 - start) / (end - start) * 100;
     year.innerHTML = `The School Year is ${tpercent.toFixed(7)}% done!`;
     ybar.setAttribute("width", (tpercent * 0.998) + "%");
+    let ypercent = (Date.now() / 1000 - gstart) / (gend - gstart) * 100;
+    graduation.innerHTML = `Graduation for '26 is (approx.) ${ypercent.toFixed(7)}% done!`;
+    gbar.setAttribute("width", (ypercent * 0.998) + "%");
     let now = new Date();
     if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) { 
         if (now.getUTCDay() % 6 != 0 && minutes(now) < 800) {
