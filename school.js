@@ -10,10 +10,10 @@ var sbar = document.getElementById("specific-bar");
 var lbar = document.getElementById("lunch-bar");
 var ybar = document.getElementById("year-bar");
 var gbar = document.getElementById("grad-bar");
+var gsel = document.getElementById("grad-sel");
 const start = 1662470400;
 const end = 1686254400;
-const gstart = 1662470400;
-const gend = 1780948800;
+const gpoints = {"2023": [1567516800, 1686254400], "2024": [1599744000, 1717876800], "2025": [1631193600, 1749412800], "2026": [1662470400, 1780948800]};
 
 function minutes(date) {
     return date.getUTCHours() * 60 + date.getUTCMinutes();
@@ -27,8 +27,8 @@ function update() {
     let tpercent = (Date.now() / 1000 - start) / (end - start) * 100;
     year.innerHTML = `The School Year is ${tpercent.toFixed(7)}% done!`;
     ybar.setAttribute("width", (tpercent * 0.998) + "%");
-    let ypercent = (Date.now() / 1000 - gstart) / (gend - gstart) * 100;
-    graduation.innerHTML = `Graduation for '26 is (approx.) ${ypercent.toFixed(7)}% done!`;
+    let ypercent = (Date.now() / 1000 - gpoints[gsel.value][0]) / (gpoints[gsel.value][1] - gpoints[gsel.value][0]) * 100;
+    graduation.innerHTML = `${ypercent.toFixed(7)}% done!`;
     gbar.setAttribute("width", (ypercent * 0.998) + "%");
     let now = new Date();
     if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) { 
