@@ -64,3 +64,7 @@ span.e {
     text-align: center;
     color: white;
 }
+
+.num {
+    max-width: 40px;
+}
