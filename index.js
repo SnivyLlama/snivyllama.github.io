@@ -5,6 +5,8 @@ var a = document.getElementById("a");
 var b = document.getElementById("b");
 var c = document.getElementById("c");
 var quad = document.getElementById("quad");
+var dubu = document.getElementById("dumb-button");
+var dudi = document.getElementById("dumb-things");
 const lifespan = 2486372248080;
 
 function update() {
@@ -43,5 +45,10 @@ function update() {
         }
     }
 }
+
+dubu.addEventListener("click", e => {
+    dubu.remove();
+    dudi.style.display = "block";
+});
 
 setInterval(update, 50);
