@@ -18,10 +18,10 @@ function update() {
     let percent = (Date.now() - ts) / lifespan * 100;
     if (percent < 0) {
         bar.setAttribute("width", "99.8%");
-        text.innerHTML = "nonexistant! (or just very lucky!)";
+        text.innerHTML = "nonexistant!";
     } else if (percent > 100) {
         bar.setAttribute("width", "99.8%");
-        text.innerHTML = "nonexistant!";
+        text.innerHTML = "nonexistant! (or just very lucky!)";
     } else {
         text.innerHTML = `${percent.toFixed(8)}% done!`;
         bar.setAttribute("width", (percent * 0.998) + "%");
