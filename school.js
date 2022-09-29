@@ -102,9 +102,9 @@ function update() {
             mins = 212 - amins;
             lunch.innerHTML = `Lunch A is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
             lbar.setAttribute("width", (percent * 0.998) + "%");
-        } else if (amins >= 213 && amins < 239) {
+        } else if (amins >= 212 && amins < 239) {
             ldiv.style.display = "block";
-            percent = (acc(now) - 1013) / .26;
+            percent = (acc(now) - 1012) / .27;
             mins = 239 - amins;
             lunch.innerHTML = `Lunch B is ${percent.toFixed(4)}% done! Only ${mins + (mins == 1 ? " minute" : " minutes")} left!`;
             lbar.setAttribute("width", (percent * 0.998) + "%");
