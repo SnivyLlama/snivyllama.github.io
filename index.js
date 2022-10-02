@@ -7,6 +7,9 @@ var c = document.getElementById("c");
 var quad = document.getElementById("quad");
 var dubu = document.getElementById("dumb-button");
 var dudi = document.getElementById("dumb-things");
+var rev = document.getElementById("review");
+var subbut = document.getElementById("sub");
+var stat = document.getElementById("status");
 const lifespan = 2486372248080;
 
 function update() {
@@ -49,6 +52,22 @@ function update() {
 dubu.addEventListener("click", e => {
     dubu.remove();
     dudi.style.display = "block";
+});
+
+subbut.addEventListener("click", e => {
+    fetch("https://camelcasedsnivy.pythonanywhere.com/review", {method: "POST", body: rev.value})
+        .then(res => {
+            if (res.status == 204) {
+                stat.className = "twohundred";
+                stat.innerText = "[Submitted! (204)] ";
+            } else if (res.status == 429) {
+                stat.className = "four29";
+                stat.innerText = "[You are submitting too fast! (429)] ";
+            } else {
+                stat.className = "othererror";
+                stat.innerText = `[Some other unknown error occured! (${res.status})] `;
+            }
+        });
 });
 
 setInterval(update, 50);
