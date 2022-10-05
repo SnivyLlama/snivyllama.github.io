@@ -10,7 +10,11 @@ var dudi = document.getElementById("dumb-things");
 var rev = document.getElementById("review");
 var subbut = document.getElementById("sub");
 var stat = document.getElementById("status");
+var suntext = document.getElementById("sun-text");
+var sun = document.getElementById("sun");
 const lifespan = 2486372248080;
+const sunborn = -145065600000000000000;
+const sundie = 157680000000000000000;
 
 function update() {
     if (date.value == "") {
@@ -30,6 +34,9 @@ function update() {
             bar.setAttribute("width", (percent * 0.998) + "%");
         }
     }
+    let percent = (Date.now() - sunborn) / (sundie - sunborn) * 100;
+    suntext.innerHTML = `The sun is ${percent.toFixed(14)}% of the way to going kaboom!`;
+    sun.setAttribute("width", (percent * 0.998) + "%");
 }
 
 dubu.addEventListener("click", e => {
