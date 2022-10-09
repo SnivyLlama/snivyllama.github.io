@@ -1,3 +1,4 @@
 *.json
 !manifest.json
 *.py
+__pycache__
