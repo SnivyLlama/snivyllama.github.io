@@ -2,17 +2,20 @@ var progress = document.getElementById("progress");
 var specific = document.getElementById("specific");
 var graduation = document.getElementById("graduation");
 var year = document.getElementById("year-text");
+var quar = document.getElementById("quarter-text");
 var lunch = document.getElementById("lunch");
 var sdiv = document.getElementById("specific-div");
-var ldiv = document.getElementById("lunch-div")
+var ldiv = document.getElementById("lunch-div");
 var obar = document.getElementById("overall-bar");
 var sbar = document.getElementById("specific-bar");
 var lbar = document.getElementById("lunch-bar");
 var ybar = document.getElementById("year-bar");
 var gbar = document.getElementById("grad-bar");
 var gsel = document.getElementById("grad-sel");
+var qbar = document.getElementById("quar-bar");
 const start = 1662470400;
 const end = 1686254400;
+const quarters = [1662470400, 1668114000, 1674766800, 1686254400, 1686254400];
 const gpoints = {"2023": [1567516800, 1686254400], "2024": [1599744000, 1717876800], "2025": [1631193600, 1749412800], "2026": [1662470400, 1780948800]};
 
 function minutes(date) {
@@ -30,6 +33,15 @@ function update() {
     let ypercent = (Date.now() / 1000 - gpoints[gsel.value][0]) / (gpoints[gsel.value][1] - gpoints[gsel.value][0]) * 100;
     graduation.innerHTML = `${ypercent.toFixed(7)}% done!`;
     gbar.setAttribute("width", (ypercent * 0.998) + "%");
+    for (let i = 0; i < 5; i++) {
+        if (Date.now() > quarters[i] * 1000) {
+            continue;
+        }
+        let qpercent = (Date.now() / 1000 - quarters[i - 1]) / (quarters[i] - quarters[i - 1]) * 100;
+        quar.innerHTML = `Quarter ${i} is ${qpercent.toFixed(6)}% done!`;
+        qbar.setAttribute("width", (qpercent * 0.998) + "%");
+        break;
+    }
     let now = new Date();
     if (now.getUTCDay() % 6 == 0 || minutes(now) < 800 || minutes(now) >= 1200) { 
         if (now.getUTCDay() % 6 != 0 && minutes(now) < 800) {
