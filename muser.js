@@ -8,6 +8,7 @@ var users = document.getElementById("users");
 
 but.onclick = () => {
     users.innerHTML = ``;
+    if (field.value == "") return;
     for (const user of data) {
         if (user.u.includes(field.value)) {
             let date = new Date(user.c).toLocaleDateString("en-us", {day: "numeric", month: "short", year: "numeric"});
