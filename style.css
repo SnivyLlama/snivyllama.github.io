@@ -38,6 +38,13 @@ span.e {
     border-radius: 2px;
 }
 
+span.f {
+    display: inline-block;
+    color: black;
+    background-color: #cab873;
+    border-radius: 2px;
+}
+
 .progress {
     width: 100%;
     height: 35px;
