@@ -88,3 +88,7 @@ span.f {
 .othererror {
     color: red;
 }
+
+.prob-in {
+    max-width: 50px;
+}
