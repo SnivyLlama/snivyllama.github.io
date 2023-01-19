@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            html {
+                background-color: black;
+                color: white;
+            }
+
+            input[type=number] {
+                width: 35px;
+            }
+
+            input[type=text] {
+                width: 70px;
+            }
+
+            div#result {
+                border: 2px white solid;
+                width: fit-content;
+                padding: 2px;
+            }
+        </style>
+        <title>Draw Calculator</title>
+    </head>
+    <body>
+        <h1>Draw Calculator</h1>
+        <div id="result" style="display: none;">
+
+        </div>
+        <form id="draw">
+            <label for="interval">Interval: </label><input type="number" name="interval" id="interval" value="8"><br>
+            <label for="draw-num">Draw Placement: </label><input type="number" name="draw-num" id="draw-num" value="1"><br>
+            <label for="start">Starting Time: </label><input type="text" name="start" id="start" placeholder="XX:XX"><br>
+            <button type="submit">Done</button>
+        </form>
+        <script>
+            var form = document.querySelector("#draw");
+            var interval = document.querySelector("#interval");
+            var placement = document.querySelector("#draw-num");
+            var start = document.querySelector("#start");
+            var result = document.querySelector("#result");
+
+            form.onsubmit = e => {
+                e.preventDefault();
+                var wait = interval.value * (placement.value - 1);
+                var hour = parseInt(start.value.substring(0, 2));
+                var minute = parseInt(start.value.substring(3));
+                result.style.display = "block";
+                result.innerHTML = `<b>Draw Time: </b>${(hour - 1 + Math.floor((wait + minute) / 60)) % 12 + 1}:${((wait + minute) % 60).toString().padStart(2, 0)}<br><b>Prep Time UP: </b>${(hour - 1 + Math.floor((wait + minute + 30) / 60)) % 12 + 1}:${((wait + minute + 30) % 60).toString().padStart(2, 0)}`;
+            }
+        </script>
+    </body>
+</html>
