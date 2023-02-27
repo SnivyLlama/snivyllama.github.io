@@ -44,7 +44,7 @@ dubu.addEventListener("click", e => {
     dudi.style.display = "block";
 });
 
-subbut.addEventListener("click", e => {
+/*subbut.addEventListener("click", e => {
     fetch("https://camelcasedsnivy.pythonanywhere.com/review", {method: "POST", body: rev.value})
         .then(res => {
             if (res.status == 204) {
@@ -58,6 +58,6 @@ subbut.addEventListener("click", e => {
                 stat.innerText = `[Some other unknown error occured! (${res.status})] `;
             }
         });
-});
+});*/
 
 setInterval(update, 50);
