@@ -21,6 +21,7 @@ const temas = {"sp1-tema-0": sp1t0info, "sp1-tema-1": sp1t1info, "sp1-tema-2": s
 const exts = {"sp1-tema-0": 141, "sp1-tema-1": 67, "sp1-tema-2": 72, "sp1-tema-3a": 100, "sp1-tema-3b": 31, "sp1-tema-4": 69, "sp1-tema-5": 48, "sp2-tema-1": 40, "sp2-tema-2": 53, "sp2-tema-3": 59, "sp2-tema-4": 45, "sp2-tema-5": 60, "sp2-tema-6": 43, "sp2-tema-7": 64, "sp3-tema-0": 50, "sp3-tema-1": 57, "sp3-tema-2": 51, "sp3-tema-3": 68, "sp3-tema-4": 69};
 var field = document.getElementById("translation");
 var empathy = document.getElementById("empathy");
+var show = document.getElementById("reveal");
 
 function canonicalise(phrase) {
     return phrase.toLowerCase().replace("á", "a").replace("é", "e").replace("í", "i").replace("ñ", "n").replace("ó", "o").replace("ú", "u").replace("ü", "u");
@@ -31,20 +32,24 @@ function update() {
     for (const [id, data] of Object.entries(temas)) {
         let temaDiv = document.getElementById(id);
         temaDiv.innerHTML = "";
-        if (field.value.length < 2) continue;
+        if (field.value.length < 1 && show.innerText === "Show All") continue;
         let ind = 0;
         for (const [sp, en] of Object.entries(data)) {
-            if (canonicalise(sp).includes(canonicalise(field.value)) || en.toLowerCase().includes(canonicalise(field.value))) {
+            if (show.innerText === "Stop Showing All" || canonicalise(sp).includes(canonicalise(field.value)) || en.toLowerCase().includes(canonicalise(field.value))) {
                 if (!temaDiv.innerHTML) {
                     temaDiv.innerHTML += `<h2>Spanish ${id[2]} Tema ${id.match(/[^-]+$/)[0]}</h2>`;
                 }
-                temaDiv.innerHTML += `<span class="def"><span class="en">${en}</span><span class="sp">${sp}</span> ${ind >= exts[id] ? "<span class=\"e\">Extension</span>" : ""}</span><br>`;
+                let def = document.createElement("span");
+                def.className = "def";
+                def.innerHTML = `<span class="en">${en}</span><span class="sp">${sp}</span> ${ind >= exts[id] ? "<span class=\"e\">Extension</span>" : ""}`;
+                temaDiv.appendChild(def);
+                temaDiv.appendChild(document.createElement("br"));
                 anything = true;
             }
             ind++;
         }
     }
-    if (!anything && field.value.length >= 2) empathy.innerHTML = `<h2>Whoops! No results found!</h2><b><a href="https://www.spanishdict.com/translate/${field.value}" target="_blank">Try using the spanishdict translation!</a><br><a href="https://translate.google.com/?sl=en&tl=es&op=translate&text=${field.value}" target="_blank">Try using Google Translate! (English -> Spanish)</a><br><a href="https://translate.google.com/?sl=es&tl=en&op=translate&text=${field.value}" target="_blank">Try using Google Translate! (Spanish -> English)</a></b>`;
+    if (!anything && field.value.length >= 1) empathy.innerHTML = `<h2>Whoops! No results found!</h2><b><a href="https://www.spanishdict.com/translate/${field.value}" target="_blank">Try using the spanishdict translation!</a><br><a href="https://translate.google.com/?sl=en&tl=es&op=translate&text=${field.value}" target="_blank">Try using Google Translate! (English -> Spanish)</a><br><a href="https://translate.google.com/?sl=es&tl=en&op=translate&text=${field.value}" target="_blank">Try using Google Translate! (Spanish -> English)</a></b>`;
     else empathy.innerHTML = "";
 }
 
@@ -52,3 +57,14 @@ field.onchange = update;
 field.onpaste = update;
 field.onkeyup = update;
 field.oninput = update;
+
+show.onclick = () => {
+    if (show.innerText === "Show All") {
+        field.disabled = true;
+        show.innerText = "Stop Showing All";
+    } else {
+        field.disabled = false;
+        show.innerText = "Show All";
+    }
+    update();
+}
