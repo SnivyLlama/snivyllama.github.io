@@ -8,5 +8,66 @@
     <body>
         <h2>Hello</h2>
         <a href="javascript:(function()%7Blet%20m%20%3D%20document.querySelector(%22meta%5Bname%3Dprevent%5D%22)%3Bif(m%20%3D%3D%3D%20null)document.head.innerHTML%20%2B%3D%20'%3Cmeta%20name%3D%22prevent%22%20prevent%3D%22true%22%3E'%3Belse%20%7Bif%20(m.getAttribute(%22prevent%22)%3D%3D%3D%22true%22)m.setAttribute(%22prevent%22%2C%20%22false%22)%3Belse%20m.setAttribute(%22prevent%22%2C%20%22true%22)%3B%7D%7D)()">Trigger Booklet Bookmarklet</a>
+        <!--
+// ==UserScript==
+// @name         Blooket Burrito
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://*.blooket.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=blooket.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    var question = "";
+    var clicked = "";
+    var answers = {};
+    function getQ() {
+        for (const elm of document.querySelectorAll("div")) if (elm.className.includes("__questionText__") && elm.getAttribute("touched") === null) return elm;
+        return null;
+    }
+    function getAs() {
+        let elms = [];
+        for (const elm of document.querySelectorAll("div")) if (elm.className.includes("__answerText__") && elm.getAttribute("touched") === null) elms.push(elm.parentElement.parentElement);
+        return elms;
+    }
+    function getR() {
+        for (const elm of document.querySelectorAll("div")) if (elm.className.includes("__header__") && elm.children.length == 0) return elm;
+        return null;
+    }
+    function getC() {
+        for (const elm of document.querySelectorAll("div")) if (elm.className.includes("__correctAnswers__")) return elm.lastChild;
+        return null;
+    }
+    setInterval(() => {
+        let ques = getQ();
+        if (ques !== null) {
+            question = ques.innerText;
+            ques.setAttribute("touched", "");
+        }
+        let teacher = document.querySelector("meta[name=prevent]");
+        if (teacher !== null && teacher.getAttribute("prevent") === "true") {
+            return;
+        }
+        let answs = getAs();
+        for (const ans of answs) {
+            ans.setAttribute("touched", "");
+            ans.addEventListener("click", () => {
+                clicked = ans.innerText;
+            });
+            if (ans.innerText === answers[question]) ans.click();
+        }
+        let head = getR();
+        if (head !== null) {
+            if (head.innerText == "CORRECT") answers[question] = clicked;
+            let correct = getC();
+            if (head.innerText == "INCORRECT" && correct !== null) answers[question] = correct.innerText;
+        }
+    }, 250);
+})();
+        -->
     </body>
 </html>
