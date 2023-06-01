@@ -37,7 +37,7 @@ function update() {
         for (const [sp, en] of Object.entries(data)) {
             if (show.innerText === "Stop Showing All" || canonicalise(sp).includes(canonicalise(field.value)) || en.toLowerCase().includes(canonicalise(field.value))) {
                 if (!temaDiv.innerHTML) {
-                    temaDiv.innerHTML += `<h2>Spanish ${id[2]} Tema ${id.match(/[^-]+$/)[0]} {id === "sp2-tema-7" ? "[this vocab doesnt exist]" : ""}</h2>`;
+                    temaDiv.innerHTML += `<h2>Spanish ${id[2]} Tema ${id.match(/[^-]+$/)[0]} ${id === "sp2-tema-7" ? "[this vocab doesnt exist]" : ""}</h2>`;
                 }
                 let def = document.createElement("span");
                 def.className = "def";
