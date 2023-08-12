@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mafia.gg Lookup Page</title>
+        <style>
+            html {
+                font-family: Times New Roman, Helvetica, Futura;
+                color: white;
+                background: black;
+            }
+
+            input {
+                max-width: 100px;
+                background: #aaa;
+                border: 1px solid black;
+            }
+            .user {
+                text-decoration: none;
+                display: inline-block;
+                margin: 2px 2px 3px 0px;
+            }
+            .id {
+                border: 1px solid #ddd;
+                border-right: 0px;
+                border-radius: 2px 0px 0px 2px;
+                padding: 0px 1px 0px 0px;
+                background-color: darkkhaki;
+                color: black;
+            }
+            .name {
+                border: 1px solid #ddd;
+                border-left: 0px;
+                border-right: 0px;
+                padding: 0px 1px 0px 1px;
+                background-color: lightgrey;
+                color: black;
+                
+            }
+            .join {
+                border: 1px solid #ddd;
+                border-left: 0px;
+                border-radius: 0px 2px 2px 0px;
+                padding: 0px 0px 0px 1px;
+                background-color: grey;
+                color: white;
+            }
+            .loading::before {
+                color: red;
+                content: "[Fetching data...]";
+            }
+            .loaded::before {
+                color: green;
+                content: "[Received data]";
+            }
+            footer {
+                font-size: 10px;
+                color: darkred;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Mafia.gg Lookup Page</h2>
+        <div class="loading"></div>
+        <label for="query">Name: </label><input maxlength=100 type="text" id="query"> <button id="look">Query</button> <button id="sensitivity">Case Sensitive</button> <button id="regex">No Regex</button>
+        <div id="users"></div>
+        <footer><b>LAST USER DATA UPDATE IS FROM AUG 12 2023</b></footer>
+        <script src="./mlook.js"></script>
+    </body>
+</html>
