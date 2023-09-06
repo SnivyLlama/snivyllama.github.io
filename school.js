@@ -13,9 +13,9 @@ var ybar = document.getElementById("year-bar");
 var gbar = document.getElementById("grad-bar");
 var gsel = document.getElementById("grad-sel");
 var qbar = document.getElementById("quar-bar");
-const start = 1662470400;
-const end = 1686254400;
-const quarters = [1662470400, 1668114000, 1674766800, 1680206400, 1686254400];
+const start = 1693920000;
+const end = 1717704000;
+const quarters = [1693920000, 1699563600, 1706216400, 1711656000, 1717704000];
 const gpoints = {"2023": [1567516800, 1686254400], "2024": [1599744000, 1717876800], "2025": [1631193600, 1749412800], "2026": [1662470400, 1780948800]};
 
 function minutes(date) {
