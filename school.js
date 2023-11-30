@@ -19,7 +19,7 @@ const quarters = [1693920000, 1699563600, 1706216400, 1711656000, 1717704000];
 const gpoints = {"2023": [1567516800, 1686254400], "2024": [1599744000, 1717876800], "2025": [1631193600, 1749412800], "2026": [1662470400, 1780948800]};
 
 function minutes(date) {
-    return (date.getUTCHours() * 60 + date.getUTCMinutes()) + 60;
+    return (date.getUTCHours() * 60 + date.getUTCMinutes()) - 60;
 }
 
 function acc(date) {
