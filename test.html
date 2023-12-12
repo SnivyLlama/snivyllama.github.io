@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>How to use netcat (in school)</title>
+        <style>
+            html {
+                color: white;
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>How to use netcat (to talk to people in a shell)</h2>
+        <p>To get your IP so that someone else is able to connect to you:</p>
+        <code>ifconfig | grep -o "inet [0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | tail -n 1 | grep -o "[0-9.]*"</code>
+        <p>To wait for connections:</p>
+        <code>nc -l 8080</code>
+        <p>You can change the 8080 to another port, but you will have to change it for the client too.<br><br>To connect to someone else:</p>
+        <code>nc ip 8080</code>
+        <p>You will have to replace <code>ip</code> with the ip address of the computer you are connecting to.</p>
+    </body>
+</html>
